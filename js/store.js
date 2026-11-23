@@ -290,7 +290,8 @@ class Store {
     if (this.remote) {
       const f = await this.gh.getFile('import/fiches.json').catch(() => null);
       if (f) { try { list = JSON.parse(f.text); } catch { list = []; } }
-    } else {
+    } else if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {
+      // Mode local (serveur sur le PC) : dossier import/ de l'application
       try { const r = await fetch('import/fiches.json', { cache: 'no-store' }); if (r.ok) list = await r.json(); } catch { /* aucun */ }
     }
     const done = new Set(this.importedIds);

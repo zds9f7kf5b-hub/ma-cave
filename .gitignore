@@ -1,0 +1,7 @@
+# Données personnelles : jamais dans le dépôt public
+import/
+*.json.bak
+ma-cave-*.json
+
+# Outils locaux
+.claude/
